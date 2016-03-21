@@ -22,6 +22,9 @@ namespace MemoryMatchingGame
         List<int> Y = new List<int>();   // Y Values of each PictureBox
         bool again = false;   // Play game again or not 
 
+        // Assigning a variable to a turned card and assigning a variable to a 2nd turned card and then comparing them to each other
+        PictureBox PendingImage1; // Store 1st flipped card into this variable
+        PictureBox PendingImage2; // Store 2nd flipped card into this variable
         
         public GameWindow()
         {
@@ -79,10 +82,12 @@ namespace MemoryMatchingGame
             DupCard11.Image = Properties.Resources.Card11;
 
             Card12.Image = Properties.Resources.Card12;
-            DupCard12.Image = Properties.Resources.Card12;
-            
+            DupCard12.Image = Properties.Resources.Card12;         
         }
 
+
+        // Timer1 and Timer2: Score Timer and Countdown Timer (Timer3 below Region Cards)
+        #region Timers
         // This enables the display of the cards face up (for 5 seconds according to timer1)
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -121,6 +126,7 @@ namespace MemoryMatchingGame
                 timer2.Stop();
             }
         }
+        #endregion
 
         // Change Card Value
         #region Cards
@@ -128,22 +134,122 @@ namespace MemoryMatchingGame
         private void Card01_Click(object sender, EventArgs e)
         {
             Card01.Image = Properties.Resources.Card01;
+
+            // If PendingImage variables are emtpy (no value in it) then no card is selected / turned (or are already matched)
+            // PendingImages are not matched and can hold a maximum of two cards (to be compared)
+
+            // If PendingImage1 is has no value (null) then assign Card01 to PendingImage1
+            if (PendingImage1 == null)
+            {
+                PendingImage1 = Card01;
+            }
+
+            // If PendingImage1 already has a value assigned to it, then check if PendingImage2 is empty
+            // If PendingImage2 has no value assigned to it, then we need to store Card01 in PendingImage2
+            // != means: is not equal to | && means: and at the same time
+            else if (PendingImage1 != null && PendingImage2 == null)
+            {
+                PendingImage2 = Card01;
+            }
+
+            // If both PendingImages have values assigned to it, then we can compare them to each other right now
+            // In actuality we are checking if the tags we assigned to the cards earlier are of equal value
+            // == means: is equal to
+            if (PendingImage1 != null && PendingImage2 != null)
+            {
+                // If the tags are similar to each other, we are just going to leave them face up
+                if (PendingImage1.Tag == PendingImage2.Tag)
+                {
+
+                }
+
+                // If they are not similar to each other, then we'll flip both cards face down again
+                // See timer3 below all the cards
+                else
+                {
+                    timer3.Start();
+                }
+            }
         }
+
 
         private void DupCard01_Click(object sender, EventArgs e)
         {
             DupCard01.Image = Properties.Resources.Card01;
+
+            if (PendingImage1 == null)
+            {
+                PendingImage1 = DupCard01;
+            }
+            else if (PendingImage1 != null && PendingImage2 == null)
+            {
+                PendingImage2 = DupCard01;
+            }
+            if (PendingImage1 != null && PendingImage2 != null)
+            {
+                if (PendingImage1.Tag == PendingImage2.Tag)
+                {
+
+                }
+                else
+                {
+                    timer3.Start();
+                }
+            }
         }
+
 
         private void Card02_Click(object sender, EventArgs e)
         {
             Card02.Image = Properties.Resources.Card02;
+
+            if (PendingImage1 == null)
+            {
+                PendingImage1 = Card02;
+            }
+            else if (PendingImage1 != null && PendingImage2 == null)
+            {
+                PendingImage2 = Card02;
+            }
+            if (PendingImage1 != null && PendingImage2 != null)
+            {
+                if (PendingImage1.Tag == PendingImage2.Tag)
+                {
+
+                }
+                else
+                {
+                    timer3.Start();
+                }
+            }
         }
+
 
         private void DupCard02_Click(object sender, EventArgs e)
         {
             DupCard02.Image = Properties.Resources.Card02;
+
+            if (PendingImage1 == null)
+            {
+                PendingImage1 = DupCard02;
+            }
+            else if (PendingImage1 != null && PendingImage2 == null)
+            {
+                PendingImage2 = DupCard02;
+            }
+            if (PendingImage1 != null && PendingImage2 != null)
+            {
+                if (PendingImage1.Tag == PendingImage2.Tag)
+                {
+
+                }
+                else
+                {
+                    timer3.Start();
+                }
+            }
         }
+
 
         private void Card03_Click(object sender, EventArgs e)
         {
@@ -245,5 +351,19 @@ namespace MemoryMatchingGame
             DupCard12.Image = Properties.Resources.Card12;
         }
         #endregion
+
+
+        // Timer3: Time the cards remain face up after being selected and they are not the same
+        private void timer3_Tick(object sender, EventArgs e)
+        {
+            // If they are not similar, they will flip face down again after 7 seconds
+            timer3.Stop();
+            PendingImage1.Image = Properties.Resources.CardBackCover;
+            PendingImage2.Image = Properties.Resources.CardBackCover;
+
+            // After being compared, they have to be set to null again
+            PendingImage1 = null;
+            PendingImage2 = null;
+        }
     }
 }
