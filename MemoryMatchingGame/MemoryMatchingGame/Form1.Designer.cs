@@ -411,7 +411,7 @@
             // 
             // timer3
             // 
-            this.timer3.Interval = 7000;
+            this.timer3.Interval = 1000;
             this.timer3.Tick += new System.EventHandler(this.timer3_Tick);
             // 
             // GameWindow
