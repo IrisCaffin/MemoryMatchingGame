@@ -17,9 +17,8 @@ namespace MemoryMatchingGame
         // But this game is very small so it's fine.
 
         int score = 0;   // Ours Scores
-        Random Location = new Random();  // Selects a randome value from X and Y list and assigns a new location to each card
-        List<int> X = new List<int>();   // X Values of each PictureBox
-        List<int> Y = new List<int>();   // Y Values of each PictureBox
+        Random location = new Random();  // Selects a randome value from X and Y list and assigns a new location to each card
+        List<Point> points = new List<Point>();   // List to hold cards points
         bool again = false;   // Play game again or not 
 
         // Assigning a variable to a turned card and assigning a variable to a 2nd turned card and then comparing them to each other
@@ -34,10 +33,25 @@ namespace MemoryMatchingGame
 
         private void GameWindow_Load(object sender, EventArgs e)
         {
+            // Making sure the Countdown starts properl after Play Again is selected
+            CountdownCounter.Text = "5";
+            
             // This will disable the user from clicking on / selecting a card during the 5 second preview
             foreach (PictureBox picture in CardsHolder.Controls)
             {
                 picture.Enabled = false;
+
+                // Adding points of each PictureBox to the list so the cards swap when loading the game
+                points.Add(picture.Location);
+            }
+
+            // We have to select a random location for the cards and their images
+            foreach (PictureBox picture in CardsHolder.Controls)
+            {
+                int next = location.Next(points.Count);
+                Point p = points[next];
+                picture.Location = p;
+                points.Remove(p);
             }
             
             // timer1 will set 5 seconds to the preview of the cards shown face up
@@ -171,6 +185,12 @@ namespace MemoryMatchingGame
                     // If two cards match, we have to disable clicking/selecting on matched cards facing up
                     Card01.Enabled = false;
                     DupCard01.Enabled = false;
+
+                    // When two cards match, 10 points will be added to the score
+                    // ScoreCounter.Text is a string
+                    // Therefore the score has to be converted to an int
+                    // And then be converted back to a string to be put back in the ScoreCounter
+                    ScoreCounter.Text = Convert.ToString(Convert.ToInt32(ScoreCounter.Text) + 10);
                 }
 
                 // If they are not similar to each other, then we'll flip both cards face down again
@@ -178,6 +198,9 @@ namespace MemoryMatchingGame
                 else
                 {
                     timer3.Start();
+
+                    // When the two cards to do not match, 10 points will be subtracted from the score
+                    ScoreCounter.Text = Convert.ToString(Convert.ToInt32(ScoreCounter.Text) - 10);
                 }
             }
         }
@@ -204,10 +227,14 @@ namespace MemoryMatchingGame
 
                     Card01.Enabled = false;
                     DupCard01.Enabled = false;
+
+                    ScoreCounter.Text = Convert.ToString(Convert.ToInt32(ScoreCounter.Text) + 10);
                 }
                 else
                 {
                     timer3.Start();
+
+                    ScoreCounter.Text = Convert.ToString(Convert.ToInt32(ScoreCounter.Text) - 10);
                 }
             }
         }
@@ -234,10 +261,14 @@ namespace MemoryMatchingGame
 
                     Card02.Enabled = false;
                     DupCard02.Enabled = false;
+
+                    ScoreCounter.Text = Convert.ToString(Convert.ToInt32(ScoreCounter.Text) + 10);
                 }
                 else
                 {
                     timer3.Start();
+
+                    ScoreCounter.Text = Convert.ToString(Convert.ToInt32(ScoreCounter.Text) - 10);
                 }
             }
         }
@@ -264,10 +295,14 @@ namespace MemoryMatchingGame
 
                     Card02.Enabled = false;
                     DupCard02.Enabled = false;
+
+                    ScoreCounter.Text = Convert.ToString(Convert.ToInt32(ScoreCounter.Text) + 10);
                 }
                 else
                 {
                     timer3.Start();
+
+                    ScoreCounter.Text = Convert.ToString(Convert.ToInt32(ScoreCounter.Text) - 10);
                 }
             }
         }
@@ -294,10 +329,14 @@ namespace MemoryMatchingGame
 
                     Card03.Enabled = false;
                     DupCard03.Enabled = false;
+
+                    ScoreCounter.Text = Convert.ToString(Convert.ToInt32(ScoreCounter.Text) + 10);
                 }
                 else
                 {
                     timer3.Start();
+
+                    ScoreCounter.Text = Convert.ToString(Convert.ToInt32(ScoreCounter.Text) - 10);
                 }
             }
         }
@@ -324,10 +363,14 @@ namespace MemoryMatchingGame
 
                     Card03.Enabled = false;
                     DupCard03.Enabled = false;
+
+                    ScoreCounter.Text = Convert.ToString(Convert.ToInt32(ScoreCounter.Text) + 10);
                 }
                 else
                 {
                     timer3.Start();
+
+                    ScoreCounter.Text = Convert.ToString(Convert.ToInt32(ScoreCounter.Text) - 10);
                 }
             }
         }
@@ -354,10 +397,14 @@ namespace MemoryMatchingGame
 
                     Card04.Enabled = false;
                     DupCard04.Enabled = false;
+
+                    ScoreCounter.Text = Convert.ToString(Convert.ToInt32(ScoreCounter.Text) + 10);
                 }
                 else
                 {
                     timer3.Start();
+
+                    ScoreCounter.Text = Convert.ToString(Convert.ToInt32(ScoreCounter.Text) - 10);
                 }
             }
         }
@@ -384,10 +431,14 @@ namespace MemoryMatchingGame
 
                     Card04.Enabled = false;
                     DupCard04.Enabled = false;
+
+                    ScoreCounter.Text = Convert.ToString(Convert.ToInt32(ScoreCounter.Text) + 10);
                 }
                 else
                 {
                     timer3.Start();
+
+                    ScoreCounter.Text = Convert.ToString(Convert.ToInt32(ScoreCounter.Text) - 10);
                 }
             }
         }
@@ -414,10 +465,14 @@ namespace MemoryMatchingGame
 
                     Card05.Enabled = false;
                     DupCard05.Enabled = false;
+
+                    ScoreCounter.Text = Convert.ToString(Convert.ToInt32(ScoreCounter.Text) + 10);
                 }
                 else
                 {
                     timer3.Start();
+
+                    ScoreCounter.Text = Convert.ToString(Convert.ToInt32(ScoreCounter.Text) - 10);
                 }
             }
         }
@@ -444,10 +499,14 @@ namespace MemoryMatchingGame
 
                     Card05.Enabled = false;
                     DupCard05.Enabled = false;
+
+                    ScoreCounter.Text = Convert.ToString(Convert.ToInt32(ScoreCounter.Text) + 10);
                 }
                 else
                 {
                     timer3.Start();
+
+                    ScoreCounter.Text = Convert.ToString(Convert.ToInt32(ScoreCounter.Text) - 10);
                 }
             }
         }
@@ -474,10 +533,14 @@ namespace MemoryMatchingGame
 
                     Card06.Enabled = false;
                     DupCard06.Enabled = false;
+
+                    ScoreCounter.Text = Convert.ToString(Convert.ToInt32(ScoreCounter.Text) + 10);
                 }
                 else
                 {
                     timer3.Start();
+
+                    ScoreCounter.Text = Convert.ToString(Convert.ToInt32(ScoreCounter.Text) - 10);
                 }
             }
         }
@@ -504,10 +567,14 @@ namespace MemoryMatchingGame
 
                     Card06.Enabled = false;
                     DupCard06.Enabled = false;
+
+                    ScoreCounter.Text = Convert.ToString(Convert.ToInt32(ScoreCounter.Text) + 10);
                 }
                 else
                 {
                     timer3.Start();
+
+                    ScoreCounter.Text = Convert.ToString(Convert.ToInt32(ScoreCounter.Text) - 10);
                 }
             }
         }
@@ -534,10 +601,14 @@ namespace MemoryMatchingGame
 
                     Card07.Enabled = false;
                     DupCard07.Enabled = false;
+
+                    ScoreCounter.Text = Convert.ToString(Convert.ToInt32(ScoreCounter.Text) + 10);
                 }
                 else
                 {
                     timer3.Start();
+
+                    ScoreCounter.Text = Convert.ToString(Convert.ToInt32(ScoreCounter.Text) - 10);
                 }
             }
         }
@@ -564,10 +635,14 @@ namespace MemoryMatchingGame
 
                     Card07.Enabled = false;
                     DupCard07.Enabled = false;
+
+                    ScoreCounter.Text = Convert.ToString(Convert.ToInt32(ScoreCounter.Text) + 10);
                 }
                 else
                 {
                     timer3.Start();
+
+                    ScoreCounter.Text = Convert.ToString(Convert.ToInt32(ScoreCounter.Text) - 10);
                 }
             }
         }
@@ -594,10 +669,14 @@ namespace MemoryMatchingGame
 
                     Card08.Enabled = false;
                     DupCard08.Enabled = false;
+
+                    ScoreCounter.Text = Convert.ToString(Convert.ToInt32(ScoreCounter.Text) + 10);
                 }
                 else
                 {
                     timer3.Start();
+
+                    ScoreCounter.Text = Convert.ToString(Convert.ToInt32(ScoreCounter.Text) - 10);
                 }
             }
         }
@@ -624,10 +703,14 @@ namespace MemoryMatchingGame
 
                     Card08.Enabled = false;
                     DupCard08.Enabled = false;
+
+                    ScoreCounter.Text = Convert.ToString(Convert.ToInt32(ScoreCounter.Text) + 10);
                 }
                 else
                 {
                     timer3.Start();
+
+                    ScoreCounter.Text = Convert.ToString(Convert.ToInt32(ScoreCounter.Text) - 10);
                 }
             }
         }
@@ -654,10 +737,14 @@ namespace MemoryMatchingGame
 
                     Card09.Enabled = false;
                     DupCard09.Enabled = false;
+
+                    ScoreCounter.Text = Convert.ToString(Convert.ToInt32(ScoreCounter.Text) + 10);
                 }
                 else
                 {
                     timer3.Start();
+
+                    ScoreCounter.Text = Convert.ToString(Convert.ToInt32(ScoreCounter.Text) - 10);
                 }
             }
         }
@@ -684,10 +771,14 @@ namespace MemoryMatchingGame
 
                     Card09.Enabled = false;
                     DupCard09.Enabled = false;
+
+                    ScoreCounter.Text = Convert.ToString(Convert.ToInt32(ScoreCounter.Text) + 10);
                 }
                 else
                 {
                     timer3.Start();
+
+                    ScoreCounter.Text = Convert.ToString(Convert.ToInt32(ScoreCounter.Text) - 10);
                 }
             }
         }
@@ -714,10 +805,14 @@ namespace MemoryMatchingGame
 
                     Card10.Enabled = false;
                     DupCard10.Enabled = false;
+
+                    ScoreCounter.Text = Convert.ToString(Convert.ToInt32(ScoreCounter.Text) + 10);
                 }
                 else
                 {
                     timer3.Start();
+
+                    ScoreCounter.Text = Convert.ToString(Convert.ToInt32(ScoreCounter.Text) - 10);
                 }
             }
         }
@@ -744,10 +839,14 @@ namespace MemoryMatchingGame
 
                     Card10.Enabled = false;
                     DupCard10.Enabled = false;
+
+                    ScoreCounter.Text = Convert.ToString(Convert.ToInt32(ScoreCounter.Text) + 10);
                 }
                 else
                 {
                     timer3.Start();
+
+                    ScoreCounter.Text = Convert.ToString(Convert.ToInt32(ScoreCounter.Text) - 10);
                 }
             }
         }
@@ -774,10 +873,14 @@ namespace MemoryMatchingGame
 
                     Card11.Enabled = false;
                     DupCard11.Enabled = false;
+
+                    ScoreCounter.Text = Convert.ToString(Convert.ToInt32(ScoreCounter.Text) + 10);
                 }
                 else
                 {
                     timer3.Start();
+
+                    ScoreCounter.Text = Convert.ToString(Convert.ToInt32(ScoreCounter.Text) - 10);
                 }
             }
         }
@@ -804,10 +907,14 @@ namespace MemoryMatchingGame
 
                     Card11.Enabled = false;
                     DupCard11.Enabled = false;
+
+                    ScoreCounter.Text = Convert.ToString(Convert.ToInt32(ScoreCounter.Text) + 10);
                 }
                 else
                 {
                     timer3.Start();
+
+                    ScoreCounter.Text = Convert.ToString(Convert.ToInt32(ScoreCounter.Text) - 10);
                 }
             }
         }
@@ -834,10 +941,14 @@ namespace MemoryMatchingGame
 
                     Card12.Enabled = false;
                     DupCard12.Enabled = false;
+
+                    ScoreCounter.Text = Convert.ToString(Convert.ToInt32(ScoreCounter.Text) + 10);
                 }
                 else
                 {
                     timer3.Start();
+
+                    ScoreCounter.Text = Convert.ToString(Convert.ToInt32(ScoreCounter.Text) - 10);
                 }
             }
         }
@@ -864,10 +975,14 @@ namespace MemoryMatchingGame
 
                     Card12.Enabled = false;
                     DupCard12.Enabled = false;
+
+                    ScoreCounter.Text = Convert.ToString(Convert.ToInt32(ScoreCounter.Text) + 10);
                 }
                 else
                 {
                     timer3.Start();
+
+                    ScoreCounter.Text = Convert.ToString(Convert.ToInt32(ScoreCounter.Text) - 10);
                 }
             }
         }
@@ -886,6 +1001,11 @@ namespace MemoryMatchingGame
             // After being compared, they have to be set to null again
             PendingImage1 = null;
             PendingImage2 = null;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            GameWindow_Load(sender, e);
         }
     }
 }

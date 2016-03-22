@@ -61,6 +61,7 @@
             this.CountdownLabel = new System.Windows.Forms.Label();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.timer3 = new System.Windows.Forms.Timer(this.components);
+            this.button1 = new System.Windows.Forms.Button();
             this.CardsHolder.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DupCard12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Card12)).BeginInit();
@@ -363,7 +364,7 @@
             // 
             this.ScoreLabel.AutoSize = true;
             this.ScoreLabel.Font = new System.Drawing.Font("Impact", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ScoreLabel.Location = new System.Drawing.Point(689, 20);
+            this.ScoreLabel.Location = new System.Drawing.Point(686, 33);
             this.ScoreLabel.Name = "ScoreLabel";
             this.ScoreLabel.Size = new System.Drawing.Size(60, 23);
             this.ScoreLabel.TabIndex = 1;
@@ -373,7 +374,7 @@
             // 
             this.ScoreCounter.AutoSize = true;
             this.ScoreCounter.Font = new System.Drawing.Font("Impact", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ScoreCounter.Location = new System.Drawing.Point(710, 47);
+            this.ScoreCounter.Location = new System.Drawing.Point(707, 60);
             this.ScoreCounter.Name = "ScoreCounter";
             this.ScoreCounter.Size = new System.Drawing.Size(20, 23);
             this.ScoreCounter.TabIndex = 2;
@@ -388,17 +389,16 @@
             // 
             this.CountdownCounter.AutoSize = true;
             this.CountdownCounter.Font = new System.Drawing.Font("Impact", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CountdownCounter.Location = new System.Drawing.Point(710, 116);
+            this.CountdownCounter.Location = new System.Drawing.Point(707, 129);
             this.CountdownCounter.Name = "CountdownCounter";
-            this.CountdownCounter.Size = new System.Drawing.Size(20, 23);
+            this.CountdownCounter.Size = new System.Drawing.Size(0, 23);
             this.CountdownCounter.TabIndex = 3;
-            this.CountdownCounter.Text = "5";
             // 
             // CountdownLabel
             // 
             this.CountdownLabel.AutoSize = true;
             this.CountdownLabel.Font = new System.Drawing.Font("Impact", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CountdownLabel.Location = new System.Drawing.Point(669, 89);
+            this.CountdownLabel.Location = new System.Drawing.Point(666, 102);
             this.CountdownLabel.Name = "CountdownLabel";
             this.CountdownLabel.Size = new System.Drawing.Size(104, 23);
             this.CountdownLabel.TabIndex = 4;
@@ -414,11 +414,23 @@
             this.timer3.Interval = 1000;
             this.timer3.Tick += new System.EventHandler(this.timer3_Tick);
             // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(667, 577);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(98, 60);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "Play Again";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // GameWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(785, 684);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.CountdownLabel);
             this.Controls.Add(this.CountdownCounter);
             this.Controls.Add(this.ScoreCounter);
@@ -495,6 +507,7 @@
         private System.Windows.Forms.Label CountdownLabel;
         private System.Windows.Forms.Timer timer2;
         private System.Windows.Forms.Timer timer3;
+        private System.Windows.Forms.Button button1;
     }
 }
 
