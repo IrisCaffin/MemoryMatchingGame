@@ -34,7 +34,7 @@ namespace MemoryMatchingGame
         private void GameWindow_Load(object sender, EventArgs e)
         {
             // Making sure the Countdown starts properl after Play Again is selected
-            CountdownCounter.Text = "5";
+            CountdownCounter.Text = "10";
             
             // This will disable the user from clicking on / selecting a card during the 5 second preview
             foreach (PictureBox picture in CardsHolder.Controls)
@@ -54,14 +54,14 @@ namespace MemoryMatchingGame
                 points.Remove(p);
             }
             
-            // timer1 will set 5 seconds to the preview of the cards shown face up
+            // timer1 will set 10 seconds to the preview of the cards shown face up
             timer1.Start();
 
-            // timer2 will start a 5 second countdown to 0 at the start to preview cards before they are put face down
+            // timer2 will start a 10 second countdown to 0 at the start to preview cards before they are put face down
             timer2.Start();
             
             // Hardcoding every PictureBox picture value
-            // So that we can have all the image on display face up for a 5 second preview before they face down
+            // So that we can have all the image on display face up for a 10 second preview before they face down
             Card01.Image = Properties.Resources.Card01;
             DupCard01.Image = Properties.Resources.Card01;
 
@@ -103,7 +103,7 @@ namespace MemoryMatchingGame
         // Timer1 and Timer2: Score Timer and Countdown Timer (Timer3 below Region Cards)
         #region Timers
 
-        // This enables the display of the cards face up (for 5 seconds according to timer1)
+        // This enables the display of the cards face up (for 10 seconds according to timer1)
         private void timer1_Tick(object sender, EventArgs e)
         {
             // This will tell timer1 to stop otherwise it will keep going
@@ -111,7 +111,7 @@ namespace MemoryMatchingGame
 
             foreach (PictureBox picture in CardsHolder.Controls)
             {
-                // This will enable to user to click on / select a card after the 5 second preview
+                // This will enable to user to click on / select a card after the 10 second preview
                 picture.Enabled = true;
                 
                 // After the 5 second preview the cursor arrow will change into a cursor hand
@@ -125,7 +125,7 @@ namespace MemoryMatchingGame
 
         private void timer2_Tick(object sender, EventArgs e)
         {
-            // This will convert the 5 of CountdownCounter from a string to a number (int)
+            // This will convert the numbers 10 of CountdownCounter from a string to a number (int)
             int timer = Convert.ToInt32(CountdownCounter.Text);
 
             // This will subtract 1 second from the CountdownCounter and put the 4 back into timer2 and so forth
